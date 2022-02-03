@@ -1,0 +1,4 @@
+<div class="alertTaskView" *ngIf="taskAlert">
+    <i class="fa fa-close" (click)="close()"></i>
+    <input type="submit" [value]="taskAlert.Task" name="SampleTask"/>
+</div>

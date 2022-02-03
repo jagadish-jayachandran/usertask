@@ -1,0 +1,123 @@
+<!-- <input type="text" placeholder="Task Description" [(ngModel)]="value" (ngModelChange)="valueChange(value)" maxlength="100"/>
+<span>{{remainingText}}</span> -->
+<div *ngIf="taskAlert">
+    <app-create-task [taskAlert]="taskAlert"></app-create-task>
+  </div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <input  type="text"  [(ngModel)]="desc" (ngModelChange)="valueChange(desc)" placeholder="Task Description"  class="custom-textarea">
+
+            <div class="count-div">
+                <div  class="count-text d-flex justify-content-between" >
+                 <span>
+                    Task
+                 </span>   <span>
+                    {{desc.length}}/100
+                 </span> </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <input type="date" [(ngModel)]="expiryDate" placeholder="Expiry Date" />
+<div>
+    Expiry Date
+</div>
+        </div>
+        <div class="col-md-2">
+            <select name="user" id="user" (change)="onChange($event)">
+                <option [value]="">select</option>
+                <option [value]="user" *ngFor="let user of usersList">{{user}}</option>
+           
+              </select>
+              <div>
+                  User
+              </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="chekbox">
+
+           <label>
+
+                <span>
+                    <i class="fa fa-flag-o" style="font-size:36px" *ngIf="!visibleFlag"></i>
+                  </span>
+                  <span>
+                    <i class="fa fa-flag" style="font-size:36px" *ngIf="visibleFlag"></i>
+                  </span>
+           </label>
+           <input id='one' type='checkbox' class="largebox"  [(ngModel)]="visibleFlag"/>
+
+
+            </div>
+          
+              <div>
+                  Important
+              </div>
+        </div> 
+         <div class="col-md-2">
+
+            <input type="submit" placeholder="submit" name="submit" (click) ="onSubmit()"/>
+              
+        </div>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Expiry</th>
+                <th scope="col">User</th>
+                <th scope="col">Important</th>
+                <th scope="col">Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of tasksList;let i = index;">
+                <td>   {{list.Task}}</td>
+                <td> {{list.Expiry_date}}</td>
+                <td>
+                    <select name="user" id="user" [(ngModel)] = "list.User" (change)="onChangeText(list,$event)">
+                        <option [value]="">select</option>
+                        <option [value]="user" *ngFor="let user of usersList">{{user}}</option>
+                   
+                      </select>
+                    <!-- {{list.User}} -->
+
+
+                </td>
+                <td>
+                    <span>
+                        <i class="fa fa-flag-o" style="font-size:36px" *ngIf="!list.Important"></i>
+                      </span>
+                      <span>
+                        <i class="fa fa-flag" style="font-size:36px" *ngIf="list.Important"></i>
+                      </span>
+                </td>
+                <td>
+                    <i class="fa fa-minus-circle" style="font-size:36px" (click)="removeRow(list,i)"></i>
+
+                </td>
+              </tr>
+          
+            </tbody>
+          </table>
+        <div >
+
+         
+
+
+        </div>
+    </div>
+
+    <!-- <div *ngIf="alertNotify">
+
+      <app-alert></app-alert>
+    </div> -->
